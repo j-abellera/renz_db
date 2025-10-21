@@ -6,10 +6,11 @@ const getById = id => db('renz_inventory').where({ id }).first();
 
 const getByName = item_name => db('renz_inventory').where({ item_name }).first();
 
-const addItem = async (item_name, count = 0) => {
-  const [id] = await db('renz_inventory').insert({ item_name, count });
-  return getById(id);
+const addItem = async (item_name, category, count = 0) => {
+  await db('renz_inventory').insert({ item_name, category, count });
+  return getByName(item_name);
 };
+
 
 const updateCount = async (item_name, delta) => {
   const item = await getByName(item_name);
@@ -19,10 +20,15 @@ const updateCount = async (item_name, delta) => {
   return getByName(item_name);
 };
 
+const removeItem = async (item_name) => {
+  return db('renz_inventory').where({ item_name }).del();
+};
+
 module.exports = {
   getAll,
   getById,
   getByName,
   addItem,
   updateCount,
+  removeItem,
 };

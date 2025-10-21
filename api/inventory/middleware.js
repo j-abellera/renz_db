@@ -15,7 +15,7 @@ const checkItemExists = async (req, res, next) => {
 const preventNegativeInventory = async (req, res, next) => {
   const { item_name, delta } = req.body;
   const item = await db('renz_inventory').where({ item_name }).first();
-  if (item && typeof delta === 'number' && item.count + delta < 0) {
+  if (item && typeof delta === 'number' && item.count - delta < 0) {
     return res.status(400).json({ message: 'Inventory cannot go negative.' });
   }
   next();
