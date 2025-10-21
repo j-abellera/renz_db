@@ -7,7 +7,7 @@
     "start": "node index.js",
     "server": "nodemon index.js",
     "resetdb": "knex migrate:rollback && npx knex migrate:down && knex migrate:latest && knex seed:run",
-    "test": "set NODE_ENV=production&& jest --runInBand"
+    "test": "set NODE_ENV=test&& jest --runInBand"
   },
   "keywords": [
     "renz_loyalty",
@@ -27,7 +27,6 @@
   },
   "devDependencies": {
     "jest": "^30.2.0",
-    "sqlite3": "^5.1.7",
     "supertest": "^7.1.4"
   }
 }

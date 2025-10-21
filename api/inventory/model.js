@@ -6,8 +6,8 @@ const getById = id => db('renz_inventory').where({ id }).first();
 
 const getByName = item_name => db('renz_inventory').where({ item_name }).first();
 
-const addItem = async (item_name, category, count = 0) => {
-  await db('renz_inventory').insert({ item_name, category, count });
+const addItem = async (item_name, category, count = 0, price = 0) => {
+  await db('renz_inventory').insert({ item_name, category, count, price });
   return getByName(item_name);
 };
 

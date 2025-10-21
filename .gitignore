@@ -9,12 +9,6 @@ yarn-error.log*
 .env.local
 .env.*.local
 
-# Database files
-*.db
-*.db3
-*.sqlite
-*.sqlite3
-
 # OS files
 .DS_Store
 Thumbs.db

@@ -20,7 +20,16 @@ describe('Inventory API', () => {
       const res = await request(server).get('/api/inventory');
       expect(res.status).toBe(200);
       expect(Array.isArray(res.body)).toBe(true);
-      expect(res.body.length).toBeGreaterThan(0);
+      expect(res.body.length).toBe(20); // Should have 20 seeded items
+    });
+    it('should return items with price field', async () => {
+      // Verify price field exists
+      const res = await request(server).get('/api/inventory');
+      expect(res.status).toBe(200);
+      expect(res.body[0]).toHaveProperty('price');
+      // PostgreSQL returns decimals as strings
+      expect(res.body[0].price).toBeDefined();
+      expect(parseFloat(res.body[0].price)).toBeGreaterThanOrEqual(0);
     });
   });
 
@@ -30,18 +39,29 @@ describe('Inventory API', () => {
       // Add a new item
       const res = await request(server)
         .post('/api/inventory/add')
-        .send({ item_name: 'test item', count: 5, category: 'sides' });
+        .send({ item_name: 'test item', count: 5, category: 'sides', price: 3.99 });
       expect(res.status).toBe(201);
       expect(res.body.item_name).toBe('test item');
+      // PostgreSQL returns decimals as strings
+      expect(parseFloat(res.body.price)).toBe(3.99);
+    });
+    it('should add item with default price of 0 if not provided', async () => {
+      // Add item without price
+      const res = await request(server)
+        .post('/api/inventory/add')
+        .send({ item_name: 'no price item', count: 1, category: 'sides' });
+      expect(res.status).toBe(201);
+      // PostgreSQL returns decimals as strings, default is "0.00"
+      expect(parseFloat(res.body.price)).toBe(0);
     });
     it('should not add duplicate item', async () => {
       // Try to add duplicate item
       await request(server)
         .post('/api/inventory/add')
-        .send({ item_name: 'unique item', count: 1, category: 'sides' });
+        .send({ item_name: 'unique item', count: 1, category: 'sides', price: 2.50 });
       const res = await request(server)
         .post('/api/inventory/add')
-        .send({ item_name: 'unique item', count: 1, category: 'sides' });
+        .send({ item_name: 'unique item', count: 1, category: 'sides', price: 2.50 });
       expect(res.status).toBe(400);
     });
   });
@@ -52,7 +72,7 @@ describe('Inventory API', () => {
       // Add to count
       await request(server)
         .post('/api/inventory/add')
-        .send({ item_name: 'add count item', count: 1, category: 'sides' });
+        .send({ item_name: 'add count item', count: 1, category: 'sides', price: 5.00 });
       const res = await request(server)
         .put('/api/inventory/add')
         .send({ item_name: 'add count item', delta: 3 });
@@ -67,7 +87,7 @@ describe('Inventory API', () => {
       // Subtract from count
       await request(server)
         .post('/api/inventory/add')
-        .send({ item_name: 'subtract count item', count: 5, category: 'sides' });
+        .send({ item_name: 'subtract count item', count: 5, category: 'sides', price: 2.00 });
       const res = await request(server)
         .put('/api/inventory/subtract')
         .send({ item_name: 'subtract count item', delta: 2 });
@@ -78,7 +98,7 @@ describe('Inventory API', () => {
       // Prevent negative inventory
       await request(server)
         .post('/api/inventory/add')
-        .send({ item_name: 'no negative', count: 1, category: 'sides' });
+        .send({ item_name: 'no negative', count: 1, category: 'sides', price: 1.50 });
       const res = await request(server)
         .put('/api/inventory/subtract')
         .send({ item_name: 'no negative', delta: 2 });
@@ -92,7 +112,7 @@ describe('Inventory API', () => {
       // Remove an item
       await request(server)
         .post('/api/inventory/add')
-        .send({ item_name: 'remove me', count: 1, category: 'sides' });
+        .send({ item_name: 'remove me', count: 1, category: 'sides', price: 4.25 });
       const res = await request(server)
         .delete('/api/inventory/remove')
         .send({ item_name: 'remove me' });

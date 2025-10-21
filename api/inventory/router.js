@@ -16,10 +16,10 @@ router.get('/', async (req, res) => {
 
 // Add a new inventory item
 router.post('/add', preventDuplicateItem, async (req, res) => {
-  const { item_name, category, count = 0 } = req.body;
+  const { item_name, category, count = 0, price = 0 } = req.body;
   if (!item_name) return res.status(400).json({ message: 'item_name required' });
   if (!category) return res.status(400).json({ message: 'category required' });
-  const item = await Inventory.addItem(item_name, category, count);
+  const item = await Inventory.addItem(item_name, category, count, price);
   res.status(201).json(item);
 });
 
