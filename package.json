@@ -1,7 +1,7 @@
 {
-  "name": "rewards_db",
-  "version": "1.0.0",
-  "description": "database for customer loyalty information for RENZ",
+  "name": "renz_db",
+  "version": "2.0.0",
+  "description": "database for customer loyalty information, orders list, and inventory management for RENZ",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -10,7 +10,9 @@
     "test": "set NODE_ENV=production&& jest --runInBand"
   },
   "keywords": [
-    "renz_loyalty"
+    "renz_loyalty",
+    "renz_inventory",
+    "renz_db"
   ],
   "author": "Justin Abellera",
   "license": "ISC",
