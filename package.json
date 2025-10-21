@@ -1,0 +1,28 @@
+{
+  "name": "rewards_db",
+  "version": "1.0.0",
+  "description": "database for customer loyalty information for RENZ",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "server": "nodemon index.js",
+    "resetdb": "knex migrate:rollback && npx knex migrate:down && knex migrate:latest && knex seed:run",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "renz_loyalty"
+  ],
+  "author": "Justin Abellera",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "knex": "^3.1.0",
+    "nodemon": "^3.1.10",
+    "pg": "^8.16.3"
+  },
+  "devDependencies": {
+    "sqlite3": "^5.1.7"
+  }
+}
