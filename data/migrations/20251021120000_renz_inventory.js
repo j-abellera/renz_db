@@ -28,10 +28,10 @@ exports.up = function (knex) {
         { item_name: 'sushi rice', category: 'rice' },
         { item_name: 'spam fried rice', category: 'rice' },
         { item_name: 'kimchi spam fried rice', category: 'rice' },
-        { item_name: 'spam musubi fried rice', category: 'rice' },
 
         // musubi
-        { item_name: 'musubi', category: 'musubi' },
+        { item_name: 'spam musubi', category: 'musubi' },
+        { item_name: 'fried rice musubi', category: 'musubi' },
         { item_name: 'kimchi fried rice musubi', category: 'musubi' },
 
         // sides
