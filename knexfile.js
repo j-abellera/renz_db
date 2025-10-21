@@ -22,11 +22,7 @@ module.exports = {
   production: {
     client: 'pg',
     connection: {
-      database: process.env.POSTGRES_DATABASE,
-      host:     process.env.POSTGRES_HOST,
-      user:     process.env.POSTGRES_USER,
-      password: process.env.POSTGRES_PASSWORD,
-      ssl: true
+      connectionString: process.env.DATABASE_URL
     },
     pool: {
       min: 2,

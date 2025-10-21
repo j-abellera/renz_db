@@ -25,6 +25,7 @@ router.post('/newcustomer', checkCustomerSchema, async (req, res, next) => {
     try {
         const customerData = req.body;
         const newCustomer = await DB.addCustomer(customerData);
+        console.log("added customer", newCustomer);
         res.status(201).json({ message: 'New customer added', data: newCustomer });
     } catch (err) {
         next(err);
