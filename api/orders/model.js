@@ -31,6 +31,48 @@ async function getAll() {
 	return db('orders').select('*').orderBy('created_at', 'desc');
 }
 
+async function getAllWithItems() {
+	// Fetch all orders
+	const orders = await db('orders').select('*').orderBy('created_at', 'desc');
+	
+	if (orders.length === 0) return [];
+	
+	// Fetch all items for those orders in one query
+	const orderIds = orders.map(o => o.id);
+	const items = await db('order_items')
+		.select(
+			'order_items.id',
+			'order_items.order_id',
+			'order_items.item_id',
+			'order_items.quantity',
+			'order_items.price_at_purchase',
+			'renz_inventory.item_name'
+		)
+		.whereIn('order_items.order_id', orderIds)
+		.leftJoin('renz_inventory', 'order_items.item_id', 'renz_inventory.id')
+		.orderBy('order_items.id', 'asc');
+	
+	// Group items by order_id
+	const itemsByOrder = items.reduce((acc, item) => {
+		if (!acc[item.order_id]) acc[item.order_id] = [];
+		acc[item.order_id].push({
+			id: item.id,
+			order_id: item.order_id,
+			item_id: item.item_id,
+			item_name: item.item_name,
+			quantity: item.quantity,
+			price_at_purchase: item.price_at_purchase,
+		});
+		return acc;
+	}, {});
+	
+	// Attach items to each order
+	return orders.map(order => ({
+		...order,
+		items: itemsByOrder[order.id] || [],
+	}));
+}
+
 async function getById(id) {
 	const rows = await db('orders as o')
 		.leftJoin('order_items as oi', 'o.id', 'oi.order_id')
@@ -93,6 +135,7 @@ async function addItems(order_id, items = []) {
 
 module.exports = {
 	getAll,
+	getAllWithItems,
 	getById,
 	createOrder,
 	deleteOrder,

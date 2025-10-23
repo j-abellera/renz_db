@@ -4,10 +4,10 @@ const { checkOrderExists, validateNewOrder } = require('./middleware');
 
 const router = express.Router();
 
-// List all orders (without items for brevity)
+// List all orders (with items)
 router.get('/', async (req, res, next) => {
   try {
-    const orders = await Orders.getAll();
+    const orders = await Orders.getAllWithItems();
     res.json({ data: orders });
   } catch (err) { next(err); }
 });
