@@ -20,6 +20,11 @@ const updateCount = async (item_name, delta) => {
   return getByName(item_name);
 };
 
+const updatePrice = async (item_name, price) => {
+  await db('renz_inventory').where({ item_name }).update({ price });
+  return getByName(item_name);
+};
+
 const removeItem = async (item_name) => {
   return db('renz_inventory').where({ item_name }).del();
 };
@@ -30,5 +35,6 @@ module.exports = {
   getByName,
   addItem,
   updateCount,
+  updatePrice,
   removeItem,
 };

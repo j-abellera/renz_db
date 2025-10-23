@@ -43,6 +43,16 @@ router.put('/subtract', checkItemExists, preventNegativeInventory, async (req, r
   res.json(updated);
 });
 
+// Update item price
+router.put('/price', checkItemExists, async (req, res) => {
+  const { item_name, price } = req.body;
+  if (typeof price !== 'number' || price < 0) {
+    return res.status(400).json({ message: 'price must be a non-negative number' });
+  }
+  const updated = await Inventory.updatePrice(item_name, price);
+  res.json(updated);
+});
+
 
 // Remove an inventory item
 router.delete('/remove', checkItemExists, async (req, res) => {
