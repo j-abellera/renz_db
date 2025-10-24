@@ -2,6 +2,8 @@ const db = require('../../data/db-config');
 
 const getAll = () => db('renz_inventory');
 
+const getAllActive = () => db('renz_inventory').where({ is_archived: false });
+
 const getById = id => db('renz_inventory').where({ id }).first();
 
 const getByName = item_name => db('renz_inventory').where({ item_name }).first();
@@ -25,16 +27,29 @@ const updatePrice = async (item_name, price) => {
   return getByName(item_name);
 };
 
+const archiveItem = async (item_name) => {
+  await db('renz_inventory').where({ item_name }).update({ is_archived: true });
+  return getByName(item_name);
+};
+
+const unarchiveItem = async (item_name) => {
+  await db('renz_inventory').where({ item_name }).update({ is_archived: false });
+  return getByName(item_name);
+};
+
 const removeItem = async (item_name) => {
   return db('renz_inventory').where({ item_name }).del();
 };
 
 module.exports = {
   getAll,
+  getAllActive,
   getById,
   getByName,
   addItem,
   updateCount,
   updatePrice,
+  archiveItem,
+  unarchiveItem,
   removeItem,
 };

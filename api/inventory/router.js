@@ -10,7 +10,8 @@ const router = express.Router();
 
 // Get all inventory items
 router.get('/', async (req, res) => {
-  const items = await Inventory.getAll();
+  const showArchived = req.query.archived === 'true';
+  const items = showArchived ? await Inventory.getAll() : await Inventory.getAllActive();
   res.json(items);
 });
 
@@ -53,12 +54,34 @@ router.put('/price', checkItemExists, async (req, res) => {
   res.json(updated);
 });
 
+// Archive an inventory item (soft delete)
+router.put('/archive', checkItemExists, async (req, res) => {
+  const { item_name } = req.body;
+  const archived = await Inventory.archiveItem(item_name);
+  res.json(archived);
+});
 
-// Remove an inventory item
+// Unarchive an inventory item
+router.put('/unarchive', checkItemExists, async (req, res) => {
+  const { item_name } = req.body;
+  const unarchived = await Inventory.unarchiveItem(item_name);
+  res.json(unarchived);
+});
+
+// Remove an inventory item (hard delete - will fail if item has orders due to RESTRICT constraint)
 router.delete('/remove', checkItemExists, async (req, res) => {
   const { item_name } = req.body;
-  await Inventory.removeItem(item_name);
-  res.json({ message: `Item '${item_name}' removed from inventory.` });
+  try {
+    await Inventory.removeItem(item_name);
+    res.json({ message: `Item '${item_name}' removed from inventory.` });
+  } catch (err) {
+    if (err.code === '23503') { // PostgreSQL foreign key violation
+      return res.status(409).json({ 
+        message: `Cannot delete '${item_name}' because it has associated orders. Use archive instead.` 
+      });
+    }
+    throw err;
+  }
 });
 
 module.exports = router;
