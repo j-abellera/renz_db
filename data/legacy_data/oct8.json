@@ -1,0 +1,331 @@
+[
+  {
+    "loyalty_member_id": null,
+    "subtotal": 54,
+    "points_used": 0,
+    "total_amount": 54,
+    "items": [
+      {
+        "item_id": 88,
+        "quantity": 3,
+        "price_at_purchase": 3.5
+      },
+      {
+        "item_id": 90,
+        "quantity": 15,
+        "price_at_purchase": 2.5
+      },
+      {
+        "item_id": 97,
+        "quantity": 3,
+        "price_at_purchase": 2
+      }
+    ],
+    "created_at": "2025-10-08T12:00:00.000Z"
+  },
+  {
+    "loyalty_member_id": null,
+    "subtotal": 6,
+    "points_used": 0,
+    "total_amount": 6,
+    "items": [
+      {
+        "item_id": 88,
+        "quantity": 1,
+        "price_at_purchase": 3.5
+      },
+      {
+        "item_id": 90,
+        "quantity": 1,
+        "price_at_purchase": 2.5
+      }
+    ],
+    "created_at": "2025-10-08T12:05:00.000Z"
+  },
+  {
+    "loyalty_member_id": null,
+    "subtotal": 7,
+    "points_used": 0,
+    "total_amount": 7,
+    "items": [
+      {
+        "item_id": 89,
+        "quantity": 1,
+        "price_at_purchase": 4.5
+      },
+      {
+        "item_id": 90,
+        "quantity": 1,
+        "price_at_purchase": 2.5
+      }
+    ],
+    "created_at": "2025-10-08T12:10:00.000Z"
+  },
+  {
+    "loyalty_member_id": null,
+    "subtotal": 15,
+    "points_used": 0,
+    "total_amount": 15,
+    "items": [
+      {
+        "item_id": 89,
+        "quantity": 1,
+        "price_at_purchase": 4.5
+      },
+      {
+        "item_id": 90,
+        "quantity": 1,
+        "price_at_purchase": 2.5
+      },
+      {
+        "item_id": 104,
+        "quantity": 1,
+        "price_at_purchase": 8
+      }
+    ],
+    "created_at": "2025-10-08T12:15:00.000Z"
+  },
+  {
+    "loyalty_member_id": null,
+    "subtotal": 6.5,
+    "points_used": 0,
+    "total_amount": 6.5,
+    "items": [
+      {
+        "item_id": 90,
+        "quantity": 1,
+        "price_at_purchase": 2.5
+      },
+      {
+        "item_id": 91,
+        "quantity": 1,
+        "price_at_purchase": 4
+      }
+    ],
+    "created_at": "2025-10-08T12:20:00.000Z"
+  },
+  {
+    "loyalty_member_id": null,
+    "subtotal": 14.5,
+    "points_used": 0,
+    "total_amount": 14.5,
+    "items": [
+      {
+        "item_id": 81,
+        "quantity": 1,
+        "price_at_purchase": 9.5
+      },
+      {
+        "item_id": 92,
+        "quantity": 1,
+        "price_at_purchase": 5
+      }
+    ],
+    "created_at": "2025-10-08T12:25:00.000Z"
+  },
+  {
+    "loyalty_member_id": null,
+    "subtotal": 18,
+    "points_used": 0,
+    "total_amount": 18,
+    "items": [
+      {
+        "item_id": 85,
+        "quantity": 1,
+        "price_at_purchase": 8
+      },
+      {
+        "item_id": 90,
+        "quantity": 4,
+        "price_at_purchase": 2.5
+      }
+    ],
+    "created_at": "2025-10-08T12:30:00.000Z"
+  },
+  {
+    "loyalty_member_id": null,
+    "subtotal": 14.5,
+    "points_used": 0,
+    "total_amount": 14.5,
+    "items": [
+      {
+        "item_id": 93,
+        "quantity": 1,
+        "price_at_purchase": 2.5
+      },
+      {
+        "item_id": 87,
+        "quantity": 1,
+        "price_at_purchase": 0.5
+      },
+      {
+        "item_id": 102,
+        "quantity": 1,
+        "price_at_purchase": 9.5
+      },
+      {
+        "item_id": 97,
+        "quantity": 1,
+        "price_at_purchase": 2
+      }
+    ],
+    "created_at": "2025-10-08T12:35:00.000Z"
+  },
+  {
+    "loyalty_member_id": null,
+    "subtotal": 19.5,
+    "points_used": 0,
+    "total_amount": 19.5,
+    "items": [
+      {
+        "item_id": 81,
+        "quantity": 1,
+        "price_at_purchase": 9.5
+      },
+      {
+        "item_id": 104,
+        "quantity": 1,
+        "price_at_purchase": 8
+      },
+      {
+        "item_id": 97,
+        "quantity": 1,
+        "price_at_purchase": 2
+      }
+    ],
+    "created_at": "2025-10-08T12:40:00.000Z"
+  },
+  {
+    "loyalty_member_id": null,
+    "subtotal": 8,
+    "points_used": 0,
+    "total_amount": 8,
+    "items": [
+      {
+        "item_id": 85,
+        "quantity": 1,
+        "price_at_purchase": 8
+      }
+    ],
+    "created_at": "2025-10-08T12:45:00.000Z"
+  },
+  {
+    "loyalty_member_id": null,
+    "subtotal": 8,
+    "points_used": 0,
+    "total_amount": 8,
+    "items": [
+      {
+        "item_id": 85,
+        "quantity": 1,
+        "price_at_purchase": 8
+      }
+    ],
+    "created_at": "2025-10-08T12:50:00.000Z"
+  },
+  {
+    "loyalty_member_id": null,
+    "subtotal": 14.5,
+    "points_used": 0,
+    "total_amount": 14.5,
+    "items": [
+      {
+        "item_id": 84,
+        "quantity": 1,
+        "price_at_purchase": 9.5
+      },
+      {
+        "item_id": 93,
+        "quantity": 1,
+        "price_at_purchase": 2.5
+      },
+      {
+        "item_id": 87,
+        "quantity": 1,
+        "price_at_purchase": 0.5
+      },
+      {
+        "item_id": 97,
+        "quantity": 1,
+        "price_at_purchase": 2
+      }
+    ],
+    "created_at": "2025-10-08T12:55:00.000Z"
+  },
+  {
+    "loyalty_member_id": null,
+    "subtotal": 10,
+    "points_used": 0,
+    "total_amount": 10,
+    "items": [
+      {
+        "item_id": 81,
+        "quantity": 1,
+        "price_at_purchase": 9.5
+      },
+      {
+        "item_id": 87,
+        "quantity": 1,
+        "price_at_purchase": 0.5
+      }
+    ],
+    "created_at": "2025-10-08T13:00:00.000Z"
+  },
+  {
+    "loyalty_member_id": null,
+    "subtotal": 4,
+    "points_used": 0,
+    "total_amount": 4,
+    "items": [
+      {
+        "item_id": 91,
+        "quantity": 1,
+        "price_at_purchase": 4
+      }
+    ],
+    "created_at": "2025-10-08T13:05:00.000Z"
+  },
+  {
+    "loyalty_member_id": null,
+    "subtotal": 12.5,
+    "points_used": 0,
+    "total_amount": 12.5,
+    "items": [
+      {
+        "item_id": 83,
+        "quantity": 1,
+        "price_at_purchase": 9.5
+      },
+      {
+        "item_id": 87,
+        "quantity": 1,
+        "price_at_purchase": 0.5
+      },
+      {
+        "item_id": 95,
+        "quantity": 1,
+        "price_at_purchase": 2.5
+      }
+    ],
+    "created_at": "2025-10-08T13:10:00.000Z"
+  },
+  {
+    "loyalty_member_id": null,
+    "subtotal": 9,
+    "points_used": 0,
+    "total_amount": 9,
+    "items": [
+      {
+        "item_id": 91,
+        "quantity": 1,
+        "price_at_purchase": 4
+      },
+      {
+        "item_id": 92,
+        "quantity": 1,
+        "price_at_purchase": 5
+      }
+    ],
+    "created_at": "2025-10-08T13:15:00.000Z"
+  }
+]
