@@ -7,7 +7,7 @@ exports.up = function (knex) {
         tbl.increments('id').primary();
         tbl.string('name', 255).notNullable();
         tbl.string('phone_number').notNullable().unique();
-        tbl.integer('points').notNullable().defaultTo(200); // new members start with 200 points
+        tbl.integer('points').notNullable().defaultTo();
         tbl.timestamp('created_at').defaultTo(knex.fn.now());
         tbl.timestamp('updated_at').defaultTo(knex.fn.now());
     })
