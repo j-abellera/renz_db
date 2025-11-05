@@ -85,6 +85,7 @@ This will:
 ### Tables
 
 #### `renz_loyalty`
+
 Customer loyalty information:
 - `id` (primary key)
 - `name`
@@ -94,12 +95,53 @@ Customer loyalty information:
 - `updated_at`
 
 #### `renz_inventory`
+
 Inventory management:
 - `id` (primary key)
 - `item_name` (unique)
 - `category`
 - `price`
 - `count`
+- `is_archived` (boolean, default false)
+
+#### `orders`
+
+Finalized customer orders:
+- `id` (primary key)
+- `created_at`
+- `loyalty_member_id` (foreign key to `renz_loyalty`)
+- `subtotal`
+- `points_used`
+- `total_amount`
+
+#### `order_items`
+
+Line items for orders:
+- `id` (primary key)
+- `order_id` (foreign key to `orders`, cascades on delete)
+- `item_id` (foreign key to `renz_inventory`)
+- `quantity`
+- `price_at_purchase`
+
+#### `saved_orders`
+
+Draft/pending customer orders:
+- `id` (primary key)
+- `created_at`
+- `updated_at`
+- `loyalty_member_id` (foreign key to `renz_loyalty`)
+- `subtotal`
+- `points_used`
+- `total_amount`
+
+#### `saved_order_items`
+
+Line items for saved orders:
+- `id` (primary key)
+- `saved_order_id` (foreign key to `saved_orders`, cascades on delete)
+- `item_id` (foreign key to `renz_inventory`)
+- `quantity`
+- `price_at_purchase`
 
 ## API Endpoints
 
@@ -117,6 +159,23 @@ Inventory management:
 - `PUT /add` - Add to inventory count
 - `PUT /subtract` - Subtract from inventory count
 - `DELETE /remove` - Remove inventory item
+
+### Orders API (`/api/orders`)
+
+- `GET /` - Get all finalized orders with items
+- `GET /:id` - Get single order with items by ID
+- `POST /` - Create new order with items
+- `POST /:id/items` - Add items to an existing order
+- `DELETE /:id` - Delete an order (cascades to order items)
+
+### Saved Orders API (`/api/saved-orders`)
+
+- `GET /` - Get all saved orders with items
+- `GET /:id` - Get single saved order with items by ID
+- `POST /` - Create new saved order with items
+- `PUT /:id` - Update saved order (modify order details and items)
+- `DELETE /:id` - Delete a saved order (cancel)
+- `POST /:id/finalize` - Convert saved order to finalized order
 
 ## Testing
 
